@@ -9,10 +9,11 @@ class Stack {
     // Add element to top of stack
     push(element) {
         this.items[this.count] = element
-        let push_res=`${element}`; //added to ${this.count}
+        let push_res=`${element}`; //console.log(`added to ${this.count}`);
         this.count += 1;
         let count=this.count -1;
-        return [push_res,count];
+        //return [push_res,count];
+        return [push_res, count];
     }
 
     // Return and remove top element in stack
@@ -64,8 +65,8 @@ class Stack {
 const stack = new Stack()
 
 $(document).ready(function(){
-    $(".row").prepend(`<div class="push">${stack.push(100)[0]}</div>`);
-    $(".row").prepend(`<div class="push">${stack.push(200)[0]}</div>`);
-    $(".row").prepend(`<div class="push">${stack.push(300)[0]}</div>`);
-    $(".row").prepend(`<div class="push">${stack.push(400)[0]}</div>`);
+    $("#stack").prepend(`<div class="row bg-primary push">${stack.push(100)[0]}</div>`);
+    $("#stack").prepend(`<div class="row bg-success push">${stack.push(200)[0]}</div>`);
+    $("#stack").prepend(`<div class="row bg-primary push">${stack.push(300)[0]}</div>`);
+    $("#stack").prepend(`<div class="row bg-success push">${stack.push(400)[0]}</div>`);
 });
