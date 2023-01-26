@@ -29,7 +29,8 @@ class Stack {
     // Check top element in stack
     peek() {
         console.log(`Top element is ${this.items[this.count - 1]}`)
-        return this.items[this.count - 1]
+        let peek_data=this.items[this.count - 1];
+        return peek_data
     }
 
     // Check if stack is empty
@@ -62,8 +63,10 @@ class Stack {
     }
 }
 
+//instantiate new object
 const stack = new Stack()
 
+//integration to webpage
 $(document).ready(function(){
     $("#btn_push").on("click", function(){
         let push_data=stack.push($("#st_data").val());
@@ -74,10 +77,15 @@ $(document).ready(function(){
         $("#popped").prepend(`<div class="row pop text-bg-danger border border-light">${pop_data}</div>`);
         $(`#st${pop_data}`).remove();
     });
+    $("#btn_peek").on("click", function(){
+        let peek_data=stack.peek();
+        $(`#st${peek_data}`).removeClass("bg-primary").addClass("peek");
+        setTimeout(function(){
+            $(`#st${peek_data}`).removeClass("peek").addClass("bg-primary");
+        }, 500);
+    });
     $("#btn_clear").on("click",function(){
         stack.clear();
         $("#stack, #popped").empty();
     });
-    
-
 });
