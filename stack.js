@@ -65,8 +65,19 @@ class Stack {
 const stack = new Stack()
 
 $(document).ready(function(){
-    $("#stack").prepend(`<div class="row bg-primary push">${stack.push(100)[0]}</div>`);
-    $("#stack").prepend(`<div class="row bg-success push">${stack.push(200)[0]}</div>`);
-    $("#stack").prepend(`<div class="row bg-primary push">${stack.push(300)[0]}</div>`);
-    $("#stack").prepend(`<div class="row bg-success push">${stack.push(400)[0]}</div>`);
+    $("#btn_push").on("click", function(){
+        let push_data=stack.push($("#st_data").val());
+        $("#stack").prepend(`<div id="st${push_data[0]}" class="row bg-primary push">${push_data}</div>`);
+    });
+    $("#btn_pop").on("click",function(){
+        let pop_data=stack.pop();
+        $("#popped").prepend(`<div class="row pop text-bg-danger border border-light">${pop_data}</div>`);
+        $(`#st${pop_data}`).remove();
+    });
+    $("#btn_clear").on("click",function(){
+        stack.clear();
+        $("#stack, #popped").empty();
+    });
+    
+
 });
